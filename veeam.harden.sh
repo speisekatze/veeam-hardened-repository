@@ -169,8 +169,8 @@ update_file "^.*minlen.*$" "minlen=15" /etc/security/pwquality.conf
 print_job "V-238226: operating system must enforce password complexity by requiring that at least one special character be used"
 update_file "^.*ocredit.*$" "ocredit=-1" /etc/security/pwquality.conf
 
-print_job "V-238227: operating system must prevent the use of dictionary words for passwords"
-update_file "^.*dictcheck.*$" "dictcheck=1" /etc/security/pwquality.conf
+#print_job "V-238227: operating system must prevent the use of dictionary words for passwords"
+#update_file "^.*dictcheck.*$" "dictcheck=1" /etc/security/pwquality.conf
 
 print_job "V-238228: operating system must be configured so that when passwords are changed or new passwords are established, pwquality must be used"
 update_file "^.*enforcing.*$" "enforcing = 1" /etc/security/pwquality.conf
@@ -410,8 +410,8 @@ run_cmd "ufw allow ssh"
 #ufw enable
 run_cmd "ufw --force enable"
 
-print_job "V-238329: operating system must prevent direct login into the root account"
-run_cmd "passwd -l root"
+#print_job "V-238329: operating system must prevent direct login into the root account"
+#run_cmd "passwd -l root"
 
 print_job "V-238332: operating system must set a sticky bit  on all public directories"
 run_cmd "find / -type d -perm -002 ! -perm -1000 -exec chmod +t '{}' \;"
@@ -475,9 +475,9 @@ run_cmd "systemctl enable --now ufw.service"
 #run_cmd "systemctl start ufw.service" -- no need as we enable and start already
 
 print_job "V-238356: operating system must, for networked systems, compare internal information system clocks at least every 24 hours with a server"
-echo "server tick.usno.navy.mil iburst maxpoll 16" > /etc/chrony/chrony.conf
-echo "server tock.usno.navy.mil iburst maxpoll 16" >> /etc/chrony/chrony.conf
-echo "server ntp2.usno.navy.mil iburst maxpoll 16" >> /etc/chrony/chrony.conf
+#echo "server tick.usno.navy.mil iburst maxpoll 16" > /etc/chrony/chrony.conf
+#echo "server tock.usno.navy.mil iburst maxpoll 16" >> /etc/chrony/chrony.conf
+echo "server smettbo.logodata.intern iburst maxpoll 16" > /etc/chrony/chrony.conf
 update_file "^.*DAEMON_OPTS.*$" "DAEMON_OPTS=\"-R -F -1\"" /etc/default/chrony
 #run_cmd "systemctl enable --now chrony.service"
 
